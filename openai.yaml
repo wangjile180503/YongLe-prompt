@@ -1,0 +1,6 @@
+interface:
+  display_name: "YongLe Prompt"
+  short_description: "海外AI真人短剧与Seedance专业提示词"
+  default_prompt: "Use $yongle-prompt to turn my locked script into a compact Chinese Seedance 2.0 prompt with verbatim English dialogue."
+policy:
+  allow_implicit_invocation: true
