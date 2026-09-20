@@ -1,74 +1,89 @@
-# Output template
+# 默认完整执行提示词格式
 
-## 容量审核
+本格式用于 Seedance 2.5 与皮皮虾短剧平台的日常分镜提示词。默认只输出中文执行提示词；剧本中的英文对白保持原文。除非用户明确要求，不附加英文图像生成提示词、英文视频运动提示词、分析表、修改日志或质量评分表。
 
-- 原时间段：
-- 可用时长：
-- 台词估时：
-- 动作与反应估时：
-- 判断：fits / tight / overloaded
-- 拆分：
+## 片段标题
 
-## 剧情功能
+```text
+## 片段X｜剧情动作名称｜完整执行提示词｜约X秒
+```
 
-- 表层事件：
-- 隐藏冲突：
-- 情绪推进：
-- 本场结尾状态：
+时长必须根据本段完整对白的自然语速、换气、动作、反应和结尾余量计算，不预设为15秒、20秒或30秒。单个独立生成片段最高30秒；剧情节拍提前完成就提前结束。
 
-## 海外市场与本地化
+## 基础画面
 
-- 目标地区/受众：
-- 平台/画幅/分级：
-- 语言/口音/字幕：
-- 类型承诺与开场钩子：
-- 保留的故事内核：
-- 需要本地化的文化机制：
-- 暂定假设与风险：
+用一个紧凑段落写明：
 
-## 角色与声音
+- 画幅；
+- 时间与具体地点；
+- 天气和主要环境状态；
+- 真人写实程度与必要材质；
+- 实际存在的主光、环境光和实景光源。
 
-For each character: identity, appearance, wardrobe, position, objective, subtext, voice identity, delivery state, line-level facial-performance map, body language, mouth-state, and continuity locks.
+不要用`延续上一镜头`、`保持参考图位置`等抽象句代替当前画面的具体信息。
 
-## 场景与连续性
+## 固定人物位置与起始状态
 
-Specify geography, time, physical light sources, color, materials, props, ambience, eyelines, 180-degree line, entrances, exits, and immutable layout details.
+逐一写清：
 
-## 片段地图
+- 人物相对门、窗、桌、床、壁炉、车辆或其他固定场景锚点的位置；
+- 站、坐、跪、躺等姿态和身体朝向；
+- 人物之间的距离、前后层级和视线对象；
+- 道具由谁持有、哪只手持有、接触发生在哪一侧；
+- 未进入当前构图的人物仍处于哪个画外坐标；
+- 上一片段尾帧中尚未结束的动作，在本片段0秒时处于哪个动作阶段。
 
-| 片段 | 原时间线 | 生成时长 | 叙事任务 | 首帧状态 | 尾帧状态 |
-|---|---:|---:|---|---|---|
+左右必须写明是人物自身的左/右，还是当前机位的画面左/右。需要锁定手部连续时，同时描述肩、上臂、前臂和手的完整连接关系。
 
-## 片段提示词
+## 连续时间轴
 
-For every clip:
+每个小镜头采用以下形式，不使用横向表格：
 
-### 分镜时间轴
+```text
+### 0.00—X.XX秒
 
-| 镜头 | 本地时间 | 景别/机位/焦段 | 画面/肢体/逐句面部表演 | 对白/口型 | 转场 |
-|---|---:|---|---|---|---|
+写明景别、摄影机所在人物哪一侧、过肩前景属于谁、主体是谁，以及画面中能看见的环境锚点。
 
-### Seedance 2.0导演版
+按先后顺序写动作、重心、接触、表情变化、视线、呼吸和结束姿态。说话者面对明确对象；只有被指定的人物产生口型。非说话者嘴巴闭合，并有不抢主体的自然呼吸、眨眼、目光或轻微姿态反应。
 
-Write the prompt in Chinese with exact local time ranges and explicit hard-cut timestamps. Preserve supplied English dialogue verbatim. Bind each line to one speaker and state who must not move their mouth. Specify generated dialogue, ambience, Foley, prop sounds, and motivated effects. End with an explicit ban on subtitles, captions, title cards, watermarks, and screen overlays.
+角色以指定语气说道：
+“保留用户提供的原台词。”
 
-### 皮皮虾短剧平台精简执行版
+说明关键词的语气、自然换气位置、最后音节和台词后的反应余量。
 
-Retain subject, action, cut points, camera, verbatim English dialogue, voice, generated ambience and Foley, reference assignments, preservation constraints, no-subtitle/no-overlay requirement, and ending state. Remove duplicated adjectives. Do not invent platform-specific fields that the user has not supplied.
+**X.XX秒直接硬切。**
+```
 
-### 节点命名
+所有镜头时间首尾相接，总和等于片段总时长。切点服从说话人变化、真实反应、动作阶段或信息揭示，不按照固定秒数平均分配。
 
-Use stable names such as `05A-01_偏殿建立大全景`, `05A-02_赵渊审问`, and `05A-03_赵景珩反应`.
+同一片段内部不要求每次切镜都改变景别。过肩正反打、说话者与听者反应可以使用相近景别，只要主体、机位角度、视线或叙事功能足以让切换清楚。只有进入下一个独立生成片段时，开场景别才必须与上一片段实际尾帧形成清楚差异。
 
-## 修改说明
+## 摄影与剪辑
 
-| 类别 | 原设计 | 修改后 | 原因 | 制作影响 | 剧情影响 |
-|---|---|---|---|---|---|
+默认真实手持摄影机：只有摄影师呼吸造成的轻微漂移、细小修正和符合身体惯性的运动。禁止推镜、拉镜、变焦、环绕、漂浮运镜、电子抖动和无动机的大幅摇移。所有转场均为直接硬切。
 
-## 高质量验收
+人物不正对镜头，不看镜头；避免正面全身排队式构图和脸部占满竖屏。多人物画面装不下时，优先保留与当前剧情有关的两人，其余人物保持既定画外坐标。
 
-Rate story, localization, casting/identity, performance, lip-sync/voice, continuity, anatomy/physics, composition/edit, material realism, and sound as `pass`, `revise`, or `regenerate`. List fixes in priority order.
+过肩镜头要让前景肩膀与正确人物的头颈和身体真实连接，不能形成悬浮肩膀、重复身体或错误服装。轴线用于维持空间可读性，不在提示词中机械加入`禁止越轴`。确需改变机位侧时，用全景、可见运动或清楚的空间重建让方向变化可理解。
 
-## 连续生成交接
+## 光影
 
-State which generated clip or actual final frame must be returned before the next continuation prompt becomes final.
+只写当前场景真实存在的光源及其结果：主光方向、遮挡、面部明暗、发丝受光、投影、环境反射和曝光。人物转身或切换机位后，光影必须根据同一光源位置连续变化，不能出现跟随脸部的美颜光。
+
+## 声音要求
+
+必须生成完整声音。分别写明：
+
+- 人声：说话者、画外音归属、语言、口音、情绪、语速、换气和口型；
+- 动作音效：脚步、衣料、护甲、纸张、道具接触、能量或其他剧情音效；
+- 环境音：雨、风、房间底噪、远处人群、车辆或其他符合地点的声音。
+
+主体对白始终清楚并高于环境声。背景人声只能是听不清内容的模糊声层，不能创造额外台词。无明确剧情需要时不添加配乐。
+
+## 清洁画面
+
+```text
+全片不得生成任何字幕、中英文文字叠加、标题、标签、水印或说明性界面。
+```
+
+道具或场景中由剧本明确要求的实体文字不属于字幕，但不能擅自增加。

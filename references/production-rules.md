@@ -11,7 +11,7 @@ For each scene, calculate:
 - establishing and transition time;
 - number of speakers, locations, and fragile actions.
 
-Classify the result as `fits`, `tight`, or `overloaded`. A clip is overloaded when natural performance, clear cuts, or stable lip-sync cannot coexist within 15 seconds.
+Classify the result as `fits`, `tight`, or `overloaded`. First derive the required duration from complete dialogue, natural breaths, action, reaction, and the ending state. A clip is overloaded when those elements, clear cuts, and stable lip-sync cannot coexist within the 30-second maximum. Do not pad a shorter completed beat or force it toward a standard duration.
 
 ## Stability priorities
 
@@ -63,8 +63,9 @@ For premium overseas work, cultural authenticity and idiomatic performance are s
 ## Naturalism and professional continuity
 
 - Do not call attention to camera technique. Prefer readable coverage, motivated framing, and patient observation over showy movement.
-- Do not cross the 180-degree line without a scripted geography reset. Match eye direction, head height, prop hand, body angle, action phase, light direction, background position, and sound perspective.
+- Keep screen geography readable and match eye direction, head height, prop hand, body angle, action phase, light direction, background position, and sound perspective. Crossing the 180-degree line is permitted when a wider geography shot, visible movement, or another clear reset establishes the new orientation. Do not add a blanket `禁止越轴` command to the generation prompt.
 - Avoid false jump cuts between nearly identical sizes and angles. Make a meaningful framing or angle change while preserving spatial logic.
+- Change shot scale between the accepted final frame of one independently generated clip and the opening shot of the next clip. Within a single generated clip, similar shot scales are allowed when a matched over-the-shoulder reverse, a speaker/listener change, a reaction, or a clear angle change makes the edit intentional; do not change scale mechanically at every cut.
 - Do not invent story actions or reactions that change intention or plot. Natural conversational performance is required: speakers and listeners may breathe, shift gaze or posture, move their head, and use restrained hand gestures when those behaviors express the written emotion without adding a new decision or fact.
 - Treat each gesture as a continuous physical action with preparation, emphasis, and recovery. Track its phase, hand, height, direction, prop contact, and sleeve state across hard cuts.
 - Keep skin, fabric, hair, glass, paper, metal, smoke, shadows, reflections, gravity, contact, and motion blur physically credible. Reject glossy AI surfaces and weightless movement.
